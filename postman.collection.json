@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "6f14c50f-3022-479b-86e5-442b893ed652",
+		"name": "sls-api-rds-3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5120413"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{envUrl}}/dev/ping",
+					"host": [
+						"{{envUrl}}"
+					],
+					"path": [
+						"dev",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{envUrl}}/auth/profile",
+					"host": [
+						"{{envUrl}}"
+					],
+					"path": [
+						"auth",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JWT login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"const access_token = response.access_token;\r",
+							"postman.setEnvironmentVariable(\"jwtToken\", access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"user1\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{envUrl}}/auth/login",
+					"host": [
+						"{{envUrl}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{envUrl}}/api/profile/cart",
+					"host": [
+						"{{envUrl}}"
+					],
+					"path": [
+						"api",
+						"profile",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\r\n    {\r\n        \"product_id\": \"57428da3-5aad-4553-ade4-aca28fc600c4\",\r\n        \"count\": 10\r\n    },\r\n    {\r\n        \"product_id\": \"6f2032ce-38ba-4ad1-9ca4-5a811b37eda1\",\r\n        \"count\": 7\r\n    },\r\n    {\r\n        \"product_id\": \"84f547bc-f080-47e2-be27-e3e3ff2f85fd\",\r\n        \"count\": 3\r\n    }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{envUrl}}/api/profile/cart",
+					"host": [
+						"{{envUrl}}"
+					],
+					"path": [
+						"api",
+						"profile",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"product_id\": \"57428da3-5aad-4553-ade4-aca28fc600c4\",\r\n        \"count\": 2\r\n    },\r\n    {\r\n        \"product_id\": \"84f547bc-f080-47e2-be27-e3e3ff2f85fd\",\r\n        \"count\": 2\r\n    }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{envUrl}}/api/profile/cart",
+					"host": [
+						"{{envUrl}}"
+					],
+					"path": [
+						"api",
+						"profile",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{envUrl}}/dev/api/profile/cart",
+					"protocol": "https",
+					"host": [
+						"{{envUrl}}"
+					],
+					"path": [
+						"dev",
+						"api",
+						"profile",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart/checkout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"paymentData\": \"ppp\",\r\n    \"deliveryData\": \"ccc\",\r\n    \"comments\": \"ссс\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{envUrl}}/api/profile/cart/checkout",
+					"host": [
+						"{{envUrl}}"
+					],
+					"path": [
+						"api",
+						"profile",
+						"cart",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwtToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -4,6 +4,7 @@
 
 #serverless
 .serverless
+.env
 
 # Logs
 logs
