@@ -1,27 +1,27 @@
 import { Module } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
+import { SequelizeModule } from '@nestjs/sequelize';
 import { JwtModule } from '@nestjs/jwt';
 
 import { AuthService } from './auth.service';
-import { BasicStrategy, JwtStrategy, LocalStrategy } from './strategies';
 
 import { JWT_CONFIG } from '../constants';
 import { UsersModule } from '../users/users.module';
+import { AuthController } from './auth.controller';
+import { User } from '../users/users.model';
 
 const { secret, expiresIn } = JWT_CONFIG;
 
 @Module({
   imports: [
+    SequelizeModule.forFeature([User]),
     UsersModule,
-    PassportModule, //.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({ secret, signOptions: { expiresIn } }),
+    JwtModule.register({
+      secret: JWT_CONFIG.secret,
+      signOptions: { expiresIn: JWT_CONFIG.expiresIn },
+    }),
   ],
-  providers: [
-    AuthService,
-    JwtStrategy,
-    LocalStrategy,
-    BasicStrategy,
-  ],
-  exports: [ AuthService ],
+  providers: [AuthService],
+  controllers: [AuthController],
+  exports: [SequelizeModule, SequelizeModule],
 })
 export class AuthModule {}
